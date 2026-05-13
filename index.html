@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGROVISION — AI Agriculture Intelligence</title>
+
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+ 
+  <div id="loading-debug" style="position: fixed; top: 80px; right: 20px; z-index: 99999; background: rgba(0,255,136,0.1); border: 1px solid #00ff88; padding: 12px 20px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 11px; color: #00ff88; backdrop-filter: blur(10px); display: none;">
+    <div style="margin-bottom: 4px; font-weight: bold;">⚙️ AGROVISION DEBUG</div>
+    <div id="three-status">Three.js: <span style="color: #ffaa00;">Cargando...</span></div>
+    <div id="gsap-status">GSAP: <span style="color: #ffaa00;">Cargando...</span></div>
+    <div id="dom-status">DOM: <span style="color: #ffaa00;">Cargando...</span></div>
+    <div id="animations-status">Animaciones: <span style="color: #ffaa00;">Pendiente</span></div>
+  </div>
+
+  
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"></div>
+
+  
+  <div class="scanlines" aria-hidden="true"></div>
+
+  
+  <nav id="main-nav">
+    <div class="nav-logo">
+      <span class="nav-logo-bracket">[</span>
+      AGV
+      <span class="nav-logo-bracket">]</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#scene-hero" class="nav-link" data-scene="hero">Origin</a></li>
+      <li><a href="#scene-barn" class="nav-link" data-scene="barn">Assistant</a></li>
+      <li><a href="#scene-problem" class="nav-link" data-scene="problem">Problem</a></li>
+      <li><a href="#scene-climate" class="nav-link" data-scene="climate">Climate</a></li>
+    </ul>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span class="status-text">AI ONLINE</span>
+    </div>
+  </nav>
+
+  
+  <section id="scene-hero" class="scene">
+
+    
+    <canvas id="hero-canvas"></canvas>
+
+    
+    <div class="field-container" id="field-parallax">
+      <div class="sky-layer" id="sky-layer"></div>
+      <div class="horizon-glow"></div>
+      <div class="crop-layer crop-far"  id="crops-far">
+        
+      </div>
+      <div class="crop-layer crop-mid"  id="crops-mid"></div>
+      <div class="crop-layer crop-near" id="crops-near"></div>
+      <div class="fog-layer" id="fog-layer"></div>
+    </div>
+
+    
+    <div class="hero-content" id="hero-content">
+      <div class="hero-eyebrow" id="hero-eyebrow">
+        <span>///</span> NEXT-GEN AGRICULTURAL INTELLIGENCE <span>///</span>
+      </div>
+
+      <h1 class="hero-title" id="hero-title">
+        <span class="title-word" data-word="AGRO">AGRO</span><span class="title-word title-accent" data-word="VISION">VISION</span>
+      </h1>
+
+      <p class="hero-subtitle" id="hero-subtitle">
+        Computer vision meets the soil. AI that sees what human eyes cannot.
+      </p>
+
+      
+      <div class="hero-questions" id="hero-questions">
+        <button class="question-btn" data-target="section-what">
+          <span class="q-index">01</span>
+          <span class="q-label">What is Agrovision?</span>
+          <span class="q-arrow">→</span>
+        </button>
+        <button class="question-btn" data-target="section-problem-info">
+          <span class="q-index">02</span>
+          <span class="q-label">What problems does it solve?</span>
+          <span class="q-arrow">→</span>
+        </button>
+        <button class="question-btn" data-target="section-why">
+          <span class="q-index">03</span>
+          <span class="q-label">Why is it important?</span>
+          <span class="q-arrow">→</span>
+        </button>
+      </div>
+
+     
+      <button class="cta-explore" id="cta-explore">
+        <span class="cta-inner">
+          <span class="cta-text">Explore The Project</span>
+          <span class="cta-icon">◈</span>
+        </span>
+        <span class="cta-bg"></span>
+      </button>
+    </div>
+
+    
+    <div class="scroll-hint" id="scroll-hint">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">SCROLL</span>
+    </div>
+  </section>
+
+  
+  <div id="info-overlay" class="info-overlay hidden">
+    <button class="info-close" id="info-close">✕ CLOSE</button>
+    <div class="info-panel">
+      
+    </div>
+  </div>
+
+  
+  <section id="scene-barn" class="scene scene-dark">
+
+    <canvas id="barn-canvas"></canvas>
+
+    <div class="barn-environment" id="barn-environment">
+     
+      <div class="barn-structure" id="barn-svg-container"></div>
+      
+      <div class="holo-particles" id="holo-particles"></div>
+    </div>
+
+    <div class="scene-content" id="barn-content">
+      <div class="scene-label">SCENE 02 — NEURAL INTERFACE</div>
+      <h2 class="scene-title">Meet Your<br/><em>AI Field Agent</em></h2>
+      <p class="scene-desc">
+        A real-time computer vision assistant that scans crops, diagnoses
+        disease, predicts yield, and communicates in plain language.
+      </p>
+
+      
+      <div class="phone-mockup" id="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="chat-header">
+              <span class="chat-ai-dot"></span>
+              <span>AgroAI Assistant</span>
+              <span class="chat-status">● LIVE</span>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+             
+            </div>
+            <div class="chat-input-row">
+              <input class="chat-input" type="text" placeholder="Ask about your crops…" readonly />
+              <button class="chat-send">⟶</button>
+            </div>
+          </div>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+    </div>
+
+    
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value" data-value="98.7">0</span><span class="stat-unit">%</span>
+        <span class="stat-label">Detection Accuracy</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" data-value="120">0</span><span class="stat-unit">+</span>
+        <span class="stat-label">Crop Diseases Identified</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" data-value="0.3">0</span><span class="stat-unit">s</span>
+        <span class="stat-label">Response Time</span>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section id="scene-problem" class="scene scene-dark scene-danger">
+
+    <canvas id="problem-canvas"></canvas>
+
+    <div class="problem-environment" id="problem-env">
+      <div class="dead-field" id="dead-field"></div>
+      <div class="pest-layer" id="pest-layer"></div>
+      <div class="toxic-fog" id="toxic-fog"></div>
+    </div>
+
+    <div class="scene-content scene-content-problem" id="problem-content">
+      <div class="scene-label danger-label">SCENE 03 — GROUND ZERO</div>
+      <h2 class="scene-title">The Crisis<br/><em>In The Field</em></h2>
+
+      
+      <div class="cards-grid" id="problem-cards">
+
+        <div class="holo-card" data-delay="0">
+          <div class="card-icon">⚠</div>
+          <h3 class="card-title">Crop Disease</h3>
+          <p class="card-body">Up to 40% of global harvests are lost each year to pests and disease — often undetected until it's too late.</p>
+          <div class="card-border-glow"></div>
+        </div>
+
+        <div class="holo-card" data-delay="150">
+          <div class="card-icon">🌡</div>
+          <h3 class="card-title">Late Detection</h3>
+          <p class="card-body">Traditional inspection is slow, expensive, and human — AI can detect infection at the molecular level before symptoms appear.</p>
+          <div class="card-border-glow"></div>
+        </div>
+
+        <div class="holo-card" data-delay="300">
+          <div class="card-icon">💸</div>
+          <h3 class="card-title">Economic Loss</h3>
+          <p class="card-body">$220 billion lost annually to crop losses in developing nations alone. Agrovision targets the detection gap.</p>
+          <div class="card-border-glow"></div>
+        </div>
+
+        <div class="holo-card" data-delay="450">
+          <div class="card-icon">🦟</div>
+          <h3 class="card-title">Pest Invasion</h3>
+          <p class="card-body">Locust swarms and insect plagues can destroy entire regions in hours. Vision AI provides early swarm detection.</p>
+          <div class="card-border-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="scene-info" class="scene scene-dark scene-info-section">
+    <div class="scene-content info-sections-wrap">
+
+      <article id="section-what" class="info-article">
+        <div class="scene-label">QUESTION 01</div>
+        <h2 class="scene-title">What is<br/><em>Agrovision?</em></h2>
+        <p class="info-body">
+          Agrovision is an AI-powered agriculture intelligence platform that uses
+          computer vision and deep learning to monitor crops in real time. Using
+          a smartphone camera, it identifies diseases, pests, nutrient deficiencies,
+          and environmental stress — providing instant guidance to farmers anywhere in the world.
+        </p>
+        <ul class="info-list" id="list-what">
+          <li>Real-time crop scanning via smartphone</li>
+          <li>Deep learning models trained on 2M+ plant samples</li>
+          <li>Multilingual chatbot interface for field workers</li>
+          <li>Offline-capable edge AI for remote regions</li>
+        </ul>
+      </article>
+
+      <article id="section-problem-info" class="info-article">
+        <div class="scene-label">QUESTION 02</div>
+        <h2 class="scene-title">Problems<br/><em>It Solves</em></h2>
+        <p class="info-body">
+          Agrovision eliminates the dependency on expensive agronomists and slow
+          lab testing. It democratizes agricultural intelligence, putting
+          the power of AI diagnostics directly in the hands of smallholder farmers.
+        </p>
+        <ul class="info-list" id="list-problems">
+          <li>Eliminates late disease detection</li>
+          <li>Reduces pesticide overuse by 60%</li>
+          <li>Provides 24/7 AI agronomist support</li>
+          <li>Integrates satellite + ground-level data</li>
+        </ul>
+      </article>
+
+      <article id="section-why" class="info-article">
+        <div class="scene-label">QUESTION 03</div>
+        <h2 class="scene-title">Why It<br/><em>Matters</em></h2>
+        <p class="info-body">
+          By 2050, we need to feed 10 billion people with less land, less water,
+          and an increasingly hostile climate. Agrovision is not a product — it's
+          a survival tool for the agricultural future of humanity.
+        </p>
+        <ul class="info-list" id="list-why">
+          <li>Food security for a 10 billion person world</li>
+          <li>Climate resilience through predictive AI</li>
+          <li>Sustainable yield optimization</li>
+          <li>Bridging the tech gap in developing agriculture</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  
+  <section id="scene-climate" class="scene scene-storm">
+
+    <canvas id="climate-canvas"></canvas>
+
+    
+    <div class="rain-container" id="rain-container"></div>
+
+    
+    <div class="lightning-overlay" id="lightning-overlay"></div>
+
+    <div class="scene-content scene-content-climate" id="climate-content">
+      <div class="scene-label storm-label">SCENE 04 — CLIMATE INTELLIGENCE</div>
+      <h2 class="scene-title climate-title">The Storm<br/><em>Is Already Here</em></h2>
+      <p class="scene-desc climate-desc">
+        Climate change is rewriting the agricultural calendar.
+        Agrovision reads the sky so farmers don't have to.
+      </p>
+
+      
+      <div class="climate-cards" id="climate-cards">
+        <div class="climate-card" data-delay="0">
+          <div class="climate-icon">⛈</div>
+          <div class="climate-stat">+2.7°C</div>
+          <div class="climate-label">Average Temp Increase by 2050</div>
+        </div>
+        <div class="climate-card" data-delay="200">
+          <div class="climate-icon">🌊</div>
+          <div class="climate-stat">−30%</div>
+          <div class="climate-label">Freshwater Available for Agriculture</div>
+        </div>
+        <div class="climate-card" data-delay="400">
+          <div class="climate-icon">🤖</div>
+          <div class="climate-stat">AI</div>
+          <div class="climate-label">Agrovision Predictive Climate Model</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <footer id="footer" class="scene scene-dark scene-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        AGRO<span class="footer-accent">VISION</span>
+      </div>
+      <p class="footer-tagline">
+        The future of food begins underground. AI sees it first.
+      </p>
+      <div class="footer-grid">
+        <span>Computer Vision</span>
+        <span>·</span>
+        <span>Deep Learning</span>
+        <span>·</span>
+        <span>Edge AI</span>
+        <span>·</span>
+        <span>Sustainable Agriculture</span>
+      </div>
+      <div class="footer-bar">
+        <span>© 2025 AGROVISION PROJECT</span>
+        <span class="footer-status">
+          <span class="status-dot"></span> ALL SYSTEMS OPERATIONAL
+        </span>
+      </div>
+    </div>
+  </footer>
+
+ 
+  <div id="scene-wipe" class="scene-wipe" aria-hidden="true">
+    <div class="wipe-text">LOADING SCENE</div>
+  </div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  
+ 
+  <script src="script.js"></script>
+</body>
+</html>
